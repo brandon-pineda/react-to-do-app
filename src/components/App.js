@@ -9,8 +9,15 @@ class App extends Component {
         this.state = { todos: [] }
     }
 
-    onChildSubmit = (val) => {
+    onFormSubmit = (val) => {
         this.state.todos.push(val)
+        this.setState({
+            todos: this.state.todos
+        })
+    }
+
+    onItemDelete = (deleted) => {
+        this.state.todos = this.state.todos.filter((item) => deleted !== item)
         this.setState({
             todos: this.state.todos
         })
@@ -21,10 +28,11 @@ class App extends Component {
       <div className="App">
           <h1>To Do App</h1>
           <Form
-              todos={this.state.todos} submitted={this.onChildSubmit}/>
+              todos={this.state.todos}
+              submitted={this.onFormSubmit}/>
           <List
               todos={this.state.todos}
-              />
+              ondelete = {this.onItemDelete}/>
       </div>
     )
   }

@@ -5,14 +5,14 @@ class Form extends Component {
         super(props);
     }
 
-    submitted(e){
+    submitted = (e) => {
         e.preventDefault()
         this.props.submitted(this.refs.createInput.value)
         this.refs.createInput.value = ''
     }
     render() {
         return (
-            <form onSubmit={this.submitted.bind(this)}>
+            <form onSubmit={this.submitted}>
                 <input type="text" placeholder="what do I need to do?" ref="createInput"/>
                 <input type="submit"/>
             </form>

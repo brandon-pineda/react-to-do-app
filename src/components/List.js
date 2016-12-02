@@ -3,21 +3,16 @@ import ListItem from './ListItem';
 
 class List extends Component {
     constructor(props){
-        super(props);
+        super(props)
     }
 
-    createTodo = (val) => {
-        return (
-            <tbody>
-                <tr>
-                    <td>{val}</td>
-                    <td>
-                        <button>edit</button>
-                        <button>delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        )
+    renderItem = () => {
+         return this.props.todos.map((item, index) =>{
+             return <ListItem key={index} item={item} delete={this.delete}/>})
+    }
+
+    delete = (e) => {
+        this.props.ondelete(e)
     }
 
     render () {
@@ -29,9 +24,9 @@ class List extends Component {
                         <th>Action</th>
                     </tr>
                 </thead>
-                    {
-                        this.props.todos.map(item => this.createTodo(item))
-                    }
+                <tbody>
+                {this.renderItem()}
+                </tbody>
             </table>
         )
     }
