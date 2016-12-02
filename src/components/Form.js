@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class Form extends Component {
-    constructor(props){
-        super(props);
-    }
-
     submitted = (e) => {
         e.preventDefault()
         this.props.submitted(this.refs.createInput.value)

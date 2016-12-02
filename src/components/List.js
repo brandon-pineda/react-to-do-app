@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import ListItem from './ListItem';
 
 class List extends Component {
-    constructor(props){
-        super(props)
-    }
-
     renderItem = () => {
          return this.props.todos.map((item, index) =>{
-             return <ListItem key={index} item={item} delete={this.delete}/>})
+             return <ListItem key={index} item={item} delete={this.delete} saveEdit={this.saveEdit}/>})
     }
 
     delete = (e) => {
         this.props.ondelete(e)
+    }
+
+    saveEdit = (oldItem, newItem) => {
+        this.props.onSaveEdit(oldItem, newItem)
     }
 
     render () {

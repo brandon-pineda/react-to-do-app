@@ -4,8 +4,8 @@ import List from './List';
 import '../App.css';
 
 class App extends Component {
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = { todos: [] }
     }
 
@@ -17,9 +17,17 @@ class App extends Component {
     }
 
     onItemDelete = (deleted) => {
-        this.state.todos = this.state.todos.filter((item) => deleted !== item)
+        let currTodos = this.state.todos.filter((item) => deleted !== item)
         this.setState({
-            todos: this.state.todos
+            todos: currTodos
+        })
+    }
+
+    onSaveEdit = (oldItem, newItem) => {
+        let currTodos = this.state.todos
+        currTodos[(this.state.todos).findIndex((item) => item === oldItem)] = newItem
+        this.setState({
+            todos: currTodos
         })
     }
 
@@ -32,7 +40,8 @@ class App extends Component {
               submitted={this.onFormSubmit}/>
           <List
               todos={this.state.todos}
-              ondelete = {this.onItemDelete}/>
+              ondelete={this.onItemDelete}
+              onSaveEdit={this.onSaveEdit}/>
       </div>
     )
   }
